@@ -1,0 +1,108 @@
+
+- hosts: all
+  become: true
+
+  vars:
+    NODEJS_VERSION: "10"
+    ansible_distribution_release: "xenial"
+    SDKTOOLS: "https://dl.google.com/android/repository/sdk-tools-linux-4333796.zip"
+    ANDROID_HOME: /opt/adt/android-sdk-linux
+    HOME: /home/vagrant/
+  
+  tasks:
+    
+    - name: Install the gpg key for NodeJS LTS
+      apt_key:       
+        url: "https://deb.nodesource.com/gpgkey/nodesource.gpg.key"
+        state: present
+
+    - name: Install NodeJS LTS repos
+      apt_repository:
+        repo: "deb https://deb.nodesource.com/node_{{ NODEJS_VERSION }}.x {{ ansible_distribution_release }} main"
+        state: present
+        update_cache: yes
+
+    - name: Install NodeJS
+      apt:
+        name: nodejs
+        state: present
+  
+    - name: Install Java JRE 
+      apt:
+        name: default-jre
+        state: present
+
+    - name: Install Java JDK 
+      apt:
+        name: default-jdk
+        state: present
+
+    - name: Download Android SDK
+      get_url:
+        url: "{{SDKTOOLS}}"
+        dest: /tmp/android.tgz
+
+    - name: Create Android SDK directory
+      file:
+        path: /opt/adt/android-sdk-linux
+        state: directory
+        mode: 0777
+
+    - name: Install unzip
+      apt:
+        name: unzip
+        state: present
+
+    - name: Unpack Android SDK
+      unarchive:
+        copy: no
+        src: /tmp/android.tgz
+        dest: /opt/adt/android-sdk-linux
+        creates: /opt/adt/android-sdk-linux/tools
+
+    - name: Install Android SDK
+      shell: yes | ./sdkmanager "platform-tools" "platforms;android-28" > /dev/null
+      args:
+        chdir: /opt/adt/android-sdk-linux/tools/bin
+
+    - name: Update Npm
+      shell: npm install npm@latest -g > /dev/null
+
+    - name:  Install React-native
+      shell: npm install -g react-native-cli > /dev/null
+
+    - name: Environment variable file
+      file:
+        path: '{{HOME}}.bash_profile' 
+        state: touch
+
+    - name: Environment variable
+      shell: |
+        echo 'export ANDROID_HOME={{ANDROID_HOME}}' >> {{HOME}}.bash_profile 
+        echo 'export PATH=$PATH:$ANDROID_HOME/tools' >> {{HOME}}.bash_profile
+        echo 'export PATH=$PATH:$ANDROID_HOME/tools/bin' >> {{HOME}}.bash_profile
+        echo 'export PATH=$PATH:$ANDROID_HOME/platform-tool' >> {{HOME}}.bash_profile
+
+    - name: Ensure apt-transport-https is installed
+      apt:
+        name: apt-transport-https
+        state: present
+        
+    - name: Add Yarn apt key
+      apt_key:
+        url: https://dl.yarnpkg.com/debian/pubkey.gpg
+       
+    - name: Add Yarn repository
+      apt_repository:
+        repo: "deb https://dl.yarnpkg.com/debian/ stable main"
+        filename: yarn
+        
+    - name: Install Yarn
+      apt:
+        name: yarn
+        state: present
+    
+    - name: Install Yarn 
+      apt:
+        name: yarn
+        state: present

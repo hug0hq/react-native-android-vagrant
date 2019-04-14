@@ -48,6 +48,30 @@ react-native run-android
 react-native start
 ```
 
+### Android device
+
+To connect your device:
+- Connect a phone to the VM.
+- Kill adb server if is running.
+
+```
+/opt/adt/android-sdk-linux/platform-tools/adb kill-server
+```
+
+- Start adb server as sudo.
+
+```
+sudo /opt/adt/android-sdk-linux/platform-tools/adb start-server
+```
+
+- Allow the connection on the phone.
+- Allow the connection on the phone.
+- See if connection is ok.
+
+```
+/opt/adt/android-sdk-linux/platform-tools/adb devices
+```
+
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details.
