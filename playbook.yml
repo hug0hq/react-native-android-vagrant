@@ -27,11 +27,6 @@
         name: nodejs
         state: present
   
-    - name: Install Java JRE 
-      apt:
-        name: default-jre
-        state: present
-
     - name: Install Java JDK 
       apt:
         name: default-jdk
@@ -98,11 +93,6 @@
         filename: yarn
         
     - name: Install Yarn
-      apt:
-        name: yarn
-        state: present
-    
-    - name: Install Yarn 
       apt:
         name: yarn
         state: present
