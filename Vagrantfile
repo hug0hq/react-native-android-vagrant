@@ -17,7 +17,7 @@ Vagrant.configure("2") do |config|
 
   #Folder Settings
   config.vm.synced_folder ".", "/vagrant"
-  config.vm.synced_folder ".", "/home/vagrant/vagrant_sync"
+  config.vm.synced_folder ".", "/home/vagrant/vagrant_sync", fsnotify: true
   
   #Provision Settings
   $script = <<-SCRIPT

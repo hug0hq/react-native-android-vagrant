@@ -8,7 +8,12 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-Make sure you have vagrant up and running on your local machine.
+Make sure you have vagrant up and running on your local machine. 
+In order to the linux VM detect your changes in the shared folder you need to install the vagrant-fsnotify plugin
+
+```
+vagrant plugin install vagrant-fsnotify
+```
 
 ## Deployment
 
@@ -19,6 +24,12 @@ vagrant up
 ```
 ```
 vagrant ssh
+```
+
+To make use of live reload run:
+
+```
+vagrant fsnotify
 ```
 
 ## React Native Project
@@ -35,6 +46,14 @@ Just create a project like you normally do.
 
 ```
 react-native init [project-name]
+```
+
+### Use an existant project
+
+Sometimes you have to re-create the native directories.
+
+```
+react-native eject
 ```
 
 ### Run a project
