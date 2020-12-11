@@ -8,8 +8,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-Make sure you have vagrant up and running on your local machine. 
-In order to the linux VM detect your changes in the shared folder you need to install the vagrant-fsnotify plugin
+Make sure you have vagrant up and running on your local machine.
+
+You need to install the vagrant-fsnotify plugin if you want your code changes to bee detected in realtime.
 
 ```
 vagrant plugin install vagrant-fsnotify
@@ -83,7 +84,6 @@ To connect your device:
 sudo /opt/adt/android-sdk-linux/platform-tools/adb start-server
 ```
 
-- Allow the connection on the phone.
 - Allow the connection on the phone.
 - See if connection is ok.
 
