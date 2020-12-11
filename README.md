@@ -1,4 +1,4 @@
-# React-native-android-vagrant
+# react-native-android-vagrant
 
 Basic vagrant project to orchestrate a react-native android development environment.
 
