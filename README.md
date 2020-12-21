@@ -10,7 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 Make sure you have vagrant up and running on your local machine.
 
-You need to install the vagrant-fsnotify plugin if you want your code changes to bee detected in realtime.
+You need to install the `vagrant-fsnotify` plugin if you want your code changes to be detected in real time.
 
 ```
 vagrant plugin install vagrant-fsnotify
@@ -18,7 +18,7 @@ vagrant plugin install vagrant-fsnotify
 
 ## Deployment
 
-If you are on windows make sure to open your terminal as admin.
+If you are on **Windows** make sure to open your terminal as admin.
 
 ```
 vagrant up
@@ -72,7 +72,7 @@ react-native start
 
 To connect your device:
 - Connect a phone to the VM.
-- Kill adb server if is running.
+- Kill adb server if it is running.
 
 ```
 /opt/adt/android-sdk-linux/platform-tools/adb kill-server
